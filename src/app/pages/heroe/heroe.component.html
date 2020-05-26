@@ -1,1 +1,61 @@
-<p>heroe works!</p>
+<h1>Héroe <small>Nombre del heroe</small></h1>
+<hr>
+<div class="row text-right">
+    <div class="col">
+        <button routerLink="/heroes" class="btn btn-danger">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+<div class="row animate__animated animate__fadeInDown">
+    <div class="col">
+        <form action="">
+            <div class="form-group">
+                <label>Firebase ID</label>
+                <input type="text"
+                    placeholder="FireBase ID"
+                    class="form-control"
+                    disabled="disabled">
+            <small class="form-text text-muted">Este campo es autogenerado</small>                    
+            </div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text"
+                    placeholder="Nombre del héroe"
+                    class="form-control"
+                    disabled="disabled"
+                    required>            
+            </div>
+            <div class="form-group">
+                <label>Poder</label>
+                <input type="text"
+                    placeholder="Poderdel héroe"
+                    class="form-control"
+                    disabled="disabled"
+                    required>            
+            </div>
+            <div class="form-group">
+                <label>Estado</label>
+                <br>
+                <button class="btn-outline-success w-50"type="button">
+                    <i class="fa fa-smile-wink"></i>
+                    VIVO
+                </button>
+
+                <button class="btn-outline-danger w-50"type="button">
+                    <i class="fa fa-dizzy"></i>
+                    MUERTO
+                </button>
+            </div>
+            <hr>
+            <div class="form-group text-center">
+                <button type="submit"
+                    class="btn btn-primary w-25">
+                    <i class="fa fa-save"></i>
+                    Guardar
+            </button>
+            </div>
+        </form>
+    </div>
+</div>

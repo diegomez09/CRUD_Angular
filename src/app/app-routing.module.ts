@@ -5,7 +5,7 @@ import { HeroeComponent } from './pages/heroe/heroe.component';
 
 const routes:Routes = [
   { path : 'heroes', component: HeroesComponent},
-  { path : 'heroe', component: HeroeComponent},
+  { path : 'heroe/:id', component: HeroeComponent},
   {path : '**' , pathMatch: 'full', redirectTo: 'heroes'}
 ]
 
