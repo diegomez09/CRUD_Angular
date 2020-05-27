@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroeModel } from 'src/app/models/heroe.model';
+import { HeroesService } from 'src/app/services/heroes.service';
 
 @Component({
   selector: 'app-heroes',
@@ -8,11 +9,16 @@ import { HeroeModel } from 'src/app/models/heroe.model';
 })
 export class HeroesComponent implements OnInit {
 
-  
+  arreglo:Object[] = [];
 
-  constructor() { }
+  constructor(private heroesService:HeroesService) { }
 
   ngOnInit(): void {
+    this.heroesService.getHeroes().subscribe(resp =>{
+      //console.log(resp);
+      //asigno respuesta a mi arreglo local
+      this.arreglo = resp;
+    })
   }
 
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HeroeModel } from 'src/app/models/heroe.model';
 import { NgForm } from '@angular/forms';
 import { HeroesService } from 'src/app/services/heroes.service';
+import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-heroe',
@@ -23,18 +26,30 @@ export class HeroeComponent implements OnInit {
       return;
     }
 
+
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando info',
+      icon: 'info',
+      allowOutsideClick: false,
+
+    });
+    Swal.showLoading();
+
+    let peticion: Observable<any>;
     if (this.heroe.id) {
-      this.heroesService.actualizarHeroe(this.heroe).subscribe
-        (respuesta => {
-          console.log(respuesta);
-        })
+      peticion = this.heroesService.actualizarHeroe(this.heroe);
     } else {
-      this.heroesService.crearHeroe(this.heroe).subscribe
-        (respuesta => {
-          console.log(respuesta);
-          this.heroe = respuesta;
-        })
+      peticion = this.heroesService.crearHeroe(this.heroe)
     }
+    console.log(peticion);
+    peticion.subscribe(resp => {
+      Swal.fire({
+        title: this.heroe.nombre,
+        text: 'Todo cool',
+        icon: 'success'
+      })
+    })
   }
 
 }
