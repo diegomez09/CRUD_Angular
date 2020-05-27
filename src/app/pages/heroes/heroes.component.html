@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<table class="table container m-3 animate__animated animate__fadeInDown">
+<table *ngIf="!cargando && arreglo.length > 0" class="table container m-3 animate__animated animate__fadeInDown">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -17,6 +17,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Poder</th>
             <th scope="col">Vivo</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +35,8 @@
                     [routerLink]="[ '/heroe', item.id ]">
                     <i class="fa fa-pen"></i>
                 </button>
-                <button class="btn btn-danger mr-1">
+                <button class="btn btn-danger mr-1"
+                (click)="borrar(item,i)">
                     <i class="fa fa-trash"></i>
                 </button>
             </td>
@@ -42,7 +44,8 @@
     </tbody>
 </table>
 
-<div class="alert alert-info text-center m-3">
+<div class="alert alert-info text-center m-3"
+    *ngIf="cargando">
     <h4 class="alert-heading">Cargando</h4>
     <p>
         <i class="fa fa-sync-alt fa-spin fa-2x"></i>
@@ -51,7 +54,7 @@
         Espere por favor
     </p>
 </div>
-<div class="alert alert-warning text-center m-3">
+<div *ngIf="!cargando && arreglo.length === 0" class="alert alert-warning text-center m-3">
     <h4 class="alert-heading">No hay registros</h4>
     <p>
         <i class="fa fa-exclamation fa-2x"></i>

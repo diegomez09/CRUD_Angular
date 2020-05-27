@@ -56,4 +56,14 @@ export class HeroesService {
     //retorno ya tood final
     return heroes;
   }
+  //recibo el id como parametro
+  heroeId(id:string){
+    //pido la info del respectivo heroe con su id
+    return this.http.get(`${this.url}/heroes/${id}.json`)
+  }
+  //borrar heroe
+  borrar(id:string){
+    return this.http.delete(`${this.url}/heroes/${id}.json`);
+  }
+
 }
