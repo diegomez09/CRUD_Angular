@@ -10,24 +10,31 @@ import { HeroesService } from 'src/app/services/heroes.service';
 })
 export class HeroeComponent implements OnInit {
 
-  heroe:HeroeModel = new HeroeModel();
+  heroe: HeroeModel = new HeroeModel();
 
-  constructor(private heroesService:HeroesService) { }
+  constructor(private heroesService: HeroesService) { }
 
   ngOnInit(): void {
   }
 
-  guardar(form:NgForm){
-    if(form.invalid){
+  guardar(form: NgForm) {
+    if (form.invalid) {
       console.log('Formulario no válido');
       return;
     }
-    
-    this.heroesService.crearHeroe(this.heroe).subscribe
-    (respuesta =>{
-      console.log(respuesta);
-      this.heroe = respuesta;
-    })
+
+    if (this.heroe.id) {
+      this.heroesService.actualizarHeroe(this.heroe).subscribe
+        (respuesta => {
+          console.log(respuesta);
+        })
+    } else {
+      this.heroesService.crearHeroe(this.heroe).subscribe
+        (respuesta => {
+          console.log(respuesta);
+          this.heroe = respuesta;
+        })
+    }
   }
 
 }
